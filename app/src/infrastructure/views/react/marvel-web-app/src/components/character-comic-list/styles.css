@@ -1,0 +1,26 @@
+.comic-list-container {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 1rem; 
+  }
+  
+  .comic-list-container::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .comic-list-container::-webkit-scrollbar-thumb {
+    background: red; 
+    border-radius: 10px;
+  }
+  
+  .comic-list-container::-webkit-scrollbar-thumb:hover {
+    background: darkred;
+  }
+  
+  .comic-list-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .comic-list-container::-webkit-scrollbar-button {
+    display: none;
+  }

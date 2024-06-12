@@ -1,0 +1,1 @@
+export const DEFAULT_POLYGON = 'polygon(100% 0, 100% 75%, 89% 110%, 0% 100%, 0 51%, 0% 0%)';
