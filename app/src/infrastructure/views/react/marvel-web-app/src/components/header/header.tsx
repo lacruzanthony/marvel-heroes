@@ -1,8 +1,17 @@
+import './styles.css';
 import marvelLogo from '../../assets/marvel-logo.svg';
-import favorites from '../../assets/heart-selected.svg';
+import emptyHeart from '../../assets/heart-default.svg';
+import selectedHeart from '../../assets/heart-selected.svg';
 import { Link, Outlet } from 'react-router-dom';
+import { useState } from 'react';
 
 export const Header = () => {
+  const [isSelected, setIsSelected] = useState(false);
+
+  const handleClick = () => {
+    setIsSelected((prevState) => !prevState);
+  };
+
   return (
     <>
       <header className="bg-black">
@@ -15,9 +24,12 @@ export const Header = () => {
             />
           </Link>
           <img
-            src={favorites}
+            src={isSelected ? selectedHeart : emptyHeart}
             alt="favorites"
-            className="h-8 sm:h-12"
+            className={`h-8 sm:h-12 heart-icon ${
+              isSelected ? 'filled' : ''
+            }`}
+            onClick={handleClick}
           />
         </div>
       </header>

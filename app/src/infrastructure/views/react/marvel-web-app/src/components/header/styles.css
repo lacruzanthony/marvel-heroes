@@ -1,0 +1,9 @@
+.heart-icon {
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.heart-icon.filled {
+  transform: scale(1.2); /* Escala la imagen ligeramente */
+  opacity: 1;
+}
