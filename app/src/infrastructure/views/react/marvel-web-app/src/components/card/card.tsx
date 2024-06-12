@@ -1,10 +1,15 @@
+import './styles.css';
 import { Link } from 'react-router-dom';
 import { useCharacterContext } from '../contexts/characters-context';
 import { MarvelCharacter } from '../../services/types';
 import { PolygonCorner } from '../polygon-corner/polygon-corner';
 import favorites from '../../assets/character-grid-heart.svg';
 
-export const Card = ({ character }: { character: MarvelCharacter }) => {
+export const Card = ({
+  character,
+}: {
+  character: MarvelCharacter;
+}) => {
   const { setCharacters } = useCharacterContext();
 
   const { id, name, thumbnail } = character;
@@ -33,10 +38,10 @@ export const Card = ({ character }: { character: MarvelCharacter }) => {
             style={{
               height: '65px',
             }}
-            className="border border-danger border-5 border-start-0 border-end-0 border-bottom-0 card-footer d-flex justify-content-between align-items-center bg-black rounded-0"
+            className="text-container border border-danger border-5 border-start-0 border-end-0 border-bottom-0 card-footer d-flex justify-content-between align-items-center bg-black rounded-0"
           >
-            <span className="text-light">{name}</span>
-            <button className="btn btn-outline-transparent p-0">
+            <span className="text-light animated-text">{name}</span>
+            <button className="btn btn-outline-transparent p-0 z-1">
               <img src={favorites} alt="favorite-button" />
             </button>
           </div>

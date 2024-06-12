@@ -1,0 +1,26 @@
+.animated-text {
+  color: white;
+  transition: color 0.3s ease;
+  z-index: 1;
+}
+
+.animated-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.text-container:hover .animated-text::before {
+  transform: translateY(0);
+}
+
+.text-container:hover .animated-text {
+  color: white;
+}
