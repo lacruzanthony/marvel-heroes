@@ -4,6 +4,6 @@
 }
 
 .heart-icon.filled {
-  transform: scale(1.2); /* Escala la imagen ligeramente */
+  transform: scale(1.2);
   opacity: 1;
 }
