@@ -4,6 +4,7 @@ import { IComicRepository } from '../../domain/repositories/IComicRepository';
 import { Character } from '../../domain/models/Character';
 import { Comic } from '../../domain/models/Comic';
 import crypto from 'crypto';
+import { MarvelCharacter } from './type';
 
 const PUBLIC_KEY = process.env.MARVEL_PUBLIC_KEY!;
 const PRIVATE_KEY = process.env.MARVEL_PRIVATE_KEY!;
@@ -26,7 +27,7 @@ export class MarvelApiService implements ICharacterRepository, IComicRepository 
         hash,
       }
     });
-    return response.data.data.results.map((char: any) =>
+    return response.data.data.results.map((char: MarvelCharacter) =>
       new Character(char.id, char.name, char.description, `${char.thumbnail.path}.${char.thumbnail.extension}`, char.comics));
   }
 

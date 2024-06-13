@@ -4,6 +4,7 @@ export interface MarvelCharacter {
     description: string;
     thumbnail: string;
     comics: Comic
+    isFavorite?: boolean;
 }
 
 export interface Comic {

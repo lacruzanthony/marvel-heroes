@@ -3,19 +3,19 @@ import marvelLogo from '../../assets/marvel-logo.svg';
 import emptyHeart from '../../assets/heart-default.svg';
 import selectedHeart from '../../assets/heart-selected.svg';
 import { Link, Outlet } from 'react-router-dom';
-import { useState } from 'react';
+import { useFavoriteCharacterContext } from '../contexts/favorite-character';
 
 export const Header = () => {
-  const [isSelected, setIsSelected] = useState(false);
-
+  const { showFavoritesGrid, toggleShowFavoritesGrid } =
+    useFavoriteCharacterContext();
   const handleClick = () => {
-    setIsSelected((prevState) => !prevState);
+    toggleShowFavoritesGrid();
   };
 
   return (
     <>
       <header className="bg-black">
-        <div className="d-flex justify-content-between px-4 py-2  border border-start-0 border-end-0 border-top-0  border-white">
+        <div className="d-flex justify-content-between px-4 py-2 border border-start-0 border-end-0 border-top-0  border-white">
           <Link to="/">
             <img
               src={marvelLogo}
@@ -24,10 +24,10 @@ export const Header = () => {
             />
           </Link>
           <img
-            src={isSelected ? selectedHeart : emptyHeart}
+            src={showFavoritesGrid ? selectedHeart : emptyHeart}
             alt="favorites"
             className={`h-8 sm:h-12 heart-icon ${
-              isSelected ? 'filled' : ''
+              showFavoritesGrid ? 'filled' : ''
             }`}
             onClick={handleClick}
           />
