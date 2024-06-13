@@ -23,13 +23,6 @@ export default function CharactersGrid() {
     ? contextCharacters
     : characters;
 
-  const { showFavoritesGrid, favoriteCharacters } =
-    useFavoriteCharacterContext();
-
-  const charactersToShow = showFavoritesGrid
-    ? favoriteCharacters
-    : characters;
-
   useEffect(() => {
     setCharacters(characters);
   }, [characters, setCharacters]);
@@ -37,7 +30,7 @@ export default function CharactersGrid() {
   return (
     <div className="container">
       <div className="row mt-5">
-        {charactersToShow.map((character) => (
+        {characters.map((character) => (
           <Card key={character.id} character={character} />
         ))}
       </div>

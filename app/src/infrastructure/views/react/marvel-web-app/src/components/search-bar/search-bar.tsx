@@ -41,7 +41,9 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           placeholder={placeholder.toUpperCase()}
         />
       </div>
-      <pre className="container fw-light mt-2">50 results</pre>
+      <pre className="container fw-light mt-2">
+        {characters.length} results
+      </pre>
     </>
   );
 };
