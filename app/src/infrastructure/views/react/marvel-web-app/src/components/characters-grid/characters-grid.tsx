@@ -12,10 +12,20 @@ export async function loader() {
 }
 
 export default function CharactersGrid() {
-  const characters = useLoaderData() as Array<MarvelCharacter>;
-  const { setCharacters } = useCharacterContext();
+  let characters = useLoaderData() as Array<MarvelCharacter>;
+  const {
+    characters: contextCharacters,
+    setCharacters,
+    showFilteredCharacters,
+  } = useCharacterContext();
+
+  characters = showFilteredCharacters
+    ? contextCharacters
+    : characters;
+
   const { showFavoritesGrid, favoriteCharacters } =
     useFavoriteCharacterContext();
+
   const charactersToShow = showFavoritesGrid
     ? favoriteCharacters
     : characters;

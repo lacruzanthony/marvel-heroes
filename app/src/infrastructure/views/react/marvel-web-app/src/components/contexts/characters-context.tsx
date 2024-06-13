@@ -7,6 +7,10 @@ import React, {
 import { MarvelCharacter } from '../../services/types';
 
 interface CharacterContextProps {
+  showFilteredCharacters: boolean;
+  setShowFilteredCharacters: React.Dispatch<
+    React.SetStateAction<boolean>
+  >;
   characters: MarvelCharacter[];
   characterDetail: MarvelCharacter | undefined;
   setCharacterDetail: React.Dispatch<
@@ -35,6 +39,8 @@ export const useCharacterContext = () => {
 export const CharacterProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
+  const [showFilteredCharacters, setShowFilteredCharacters] =
+    useState(false);
   const [characters, setCharacters] = useState<MarvelCharacter[]>([]);
   const [characterDetail, setCharacterDetail] =
     useState<MarvelCharacter>();
@@ -42,6 +48,8 @@ export const CharacterProvider: React.FC<{ children: ReactNode }> = ({
   return (
     <CharacterContext.Provider
       value={{
+        showFilteredCharacters,
+        setShowFilteredCharacters,
         characters,
         setCharacters,
         characterDetail,
