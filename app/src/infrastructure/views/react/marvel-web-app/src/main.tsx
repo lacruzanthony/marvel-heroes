@@ -18,7 +18,8 @@ import CharacterComicList, {
   loader as CharacterDetailLoader,
 } from './components/character-comic-list/character-comic-list';
 import { FavoriteCharacterProvider } from './components/contexts/favorite-character.tsx';
-import { SearchBar } from './components/search-bar/search-bar.tsx';
+import { SearchBar } from './components/search-bar';
+import { Favorites } from './components/favorites';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
           </>
         ),
         loader: CharactersLoader,
+      },
+      {
+        path: '/favorites',
+        element: <Favorites />,
       },
       {
         path: '/character/:id',
