@@ -2,6 +2,9 @@ import { Card } from '../card';
 import { getCharacters } from '../../services';
 import { useLoaderData } from 'react-router-dom';
 import { MarvelCharacter } from '../../services/types';
+import { useCharacterContext } from '../contexts/characters-context';
+import { useEffect } from 'react';
+import { useFavoriteCharacterContext } from '../contexts/favorite-character';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function loader() {
@@ -10,10 +13,21 @@ export async function loader() {
 
 export default function CharactersGrid() {
   const characters = useLoaderData() as Array<MarvelCharacter>;
+  const { setCharacters } = useCharacterContext();
+  const { showFavoritesGrid, favoriteCharacters } =
+    useFavoriteCharacterContext();
+  const charactersToShow = showFavoritesGrid
+    ? favoriteCharacters
+    : characters;
+
+  useEffect(() => {
+    setCharacters(characters);
+  }, [characters, setCharacters]);
+
   return (
     <div className="container">
       <div className="row mt-5">
-        {characters.map((character) => (
+        {charactersToShow.map((character) => (
           <Card key={character.id} character={character} />
         ))}
       </div>

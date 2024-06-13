@@ -1,16 +1,15 @@
-import React from 'react';
 import './styles.css';
+import React from 'react';
 import { useCharacterContext } from '../contexts/characters-context';
 import { PolygonCorner } from '../polygon-corner/polygon-corner';
+import { MarvelCharacter } from '../../services/types';
 
 const CharacterDetail: React.FC = () => {
-  const { characters } = useCharacterContext();
+  const { characterDetail } = useCharacterContext();
 
-  const [character] = characters;
   const { name, description, thumbnail } =
-    character;
+    characterDetail as MarvelCharacter;
 
-  console.log(character);
   return (
     <PolygonCorner polygon="polygon(100% 0px, 100% 90%, 89% 145%, 0% 100%, 0px 51%, 0% 0%)">
       <div className="container-fluid bg-black">
@@ -22,15 +21,11 @@ const CharacterDetail: React.FC = () => {
             style={{ maxWidth: '300px' }}
           />
           <div className="ml-lg-4 ms-5">
-            <h1 className="text-light d-inline">
-              {name}
-            </h1>
+            <h1 className="text-light d-inline">{name}</h1>
             <button className="btn btn-outline-danger float-end">
               <i className="bi bi-heart"></i>
             </button>
-            <p className="text-light w-75">
-              {description}
-            </p>
+            <p className="text-light w-75">{description}</p>
           </div>
         </div>
       </div>
