@@ -33,7 +33,7 @@ const CharacterDetail: React.FC = () => {
             className="img-fluid mb-3 mb-lg-0"
             style={{ maxWidth: '300px' }}
           />
-          <div className="ml-lg-4 ms-5 w-50">
+          <div className="ml-lg-4 ms-5 w-100 w-lg-50">
             <div className="d-flex justify-content-between align-items-center">
               <h1 className="text-light">{name}</h1>
               <button
