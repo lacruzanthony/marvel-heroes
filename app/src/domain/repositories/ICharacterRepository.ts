@@ -1,5 +1,5 @@
 import { Character } from "../models/Character";
 
 export interface ICharacterRepository {
-  getCharacters(limit: number): Promise<Character[]>;
+  getCharacters(q: string, limit: number): Promise<Character[]>;
 }

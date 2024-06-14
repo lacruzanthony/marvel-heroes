@@ -7,7 +7,8 @@ const getMarvelCharacters = new GetMarvelCharacters(characterRepository);
 
 export const getMarvelCharactersController = async (req: Request, res: Response) => {
   try {
-    const characters = await getMarvelCharacters.execute(50);
+    const { q = '' } = req.query;
+    const characters = await getMarvelCharacters.execute(q.toString(), 50);
     res.status(200).json(characters);
   } catch (error) {
     const errorMessage = (error as Error).message;
