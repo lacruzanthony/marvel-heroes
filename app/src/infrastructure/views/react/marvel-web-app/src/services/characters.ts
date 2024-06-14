@@ -1,9 +1,10 @@
 import { API_HOST } from "../config"
 import { Comic, MarvelCharacter } from "./types";
 
-export const getCharacters = async () => {
+export const getCharacters = async (query: string = '') => {
     try {
-        const response = await fetch(`http://${API_HOST}/api/characters`)
+        const queryParam = query ? `?q=${query}` : ''
+        const response = await fetch(`http://${API_HOST}/api/characters${queryParam}`)
 
         if (!response.ok) {
             return new Error(`Failed to fetch characters ${response.statusText}`)

@@ -17,16 +17,21 @@ const generateHash = (): { ts: string; hash: string } => {
 };
 
 export class MarvelApiService implements ICharacterRepository, IComicRepository {
-  async getCharacters(limit: number): Promise<Character[]> {
+  async getCharacters(q: string = '', limit: number = 50): Promise<Character[]> {
     const { ts, hash } = generateHash();
-    const response = await axios.get(`${BASE_URL}/characters`, {
-      params: {
-        limit,
-        ts,
-        apikey: PUBLIC_KEY,
-        hash,
-      }
-    });
+    const params = q ? {
+      limit,
+      ts,
+      apikey: PUBLIC_KEY,
+      hash,
+      nameStartsWith: q
+    } : {
+      limit,
+      ts,
+      apikey: PUBLIC_KEY,
+      hash,
+    };
+    const response = await axios.get(`${BASE_URL}/characters`, { params });
     return response.data.data.results.map((char: MarvelCharacter) =>
       new Character(char.id, char.name, char.description, `${char.thumbnail.path}.${char.thumbnail.extension}`, char.comics));
   }
