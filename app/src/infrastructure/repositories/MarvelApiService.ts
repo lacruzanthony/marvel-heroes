@@ -41,12 +41,17 @@ export class MarvelApiService implements ICharacterRepository, IComicRepository 
         hash,
       }
     });
-    return response.data.data.results.map((comic: any) => new Comic(comic.id, comic.title, comic.description, `${comic.thumbnail.path}.${comic.thumbnail.extension}`));
+    return response.data.data.results.map((comic: any) => (new Comic(
+      comic.id,
+      comic.title,
+      comic.description,
+      `${comic.thumbnail.path}.${comic.thumbnail.extension}`,
+      new Date(comic.dates.find((date: any) => date.type === 'onsaleDate')?.date || '').getFullYear())));
   }
 
   async getComicsByCharacter(characterId: string, limit: number): Promise<Comic[]> {
     const { ts, hash } = generateHash();
-    const response = await axios.get(`${BASE_URL}/characters/${characterId}/comics`, {
+    const response = await axios.get(`${BASE_URL}/characters/${characterId}/comics?orderBy=onsaleDate`, {
       params: {
         limit,
         ts,
@@ -54,6 +59,11 @@ export class MarvelApiService implements ICharacterRepository, IComicRepository 
         hash,
       }
     });
-    return response.data.data.results.map((comic: any) => new Comic(comic.id, comic.title, comic.description, `${comic.thumbnail.path}.${comic.thumbnail.extension}`));
+    return response.data.data.results.map((comic: any) => (new Comic(
+      comic.id,
+      comic.title,
+      comic.description,
+      `${comic.thumbnail.path}.${comic.thumbnail.extension}`,
+      new Date(comic.dates.find((date: any) => date.type === 'onsaleDate')?.date || '').getFullYear())));
   }
 }

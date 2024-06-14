@@ -19,7 +19,7 @@ export const getMarvelComicsController = async (_req: Request, res: Response) =>
 export const getComicsByCharacterController = async (req: Request, res: Response) => {
   const { characterId } = req.params;
   try {
-    const comics = await getComicsByCharacter.execute(characterId, 50);
+    const comics = await getComicsByCharacter.execute(characterId, 20);
     res.status(200).json(comics);
   } catch (error) {
     res.status(500).json({ message: 'Internal Server Error', error: (error as Error).message });
