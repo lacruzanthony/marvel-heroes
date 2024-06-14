@@ -4,7 +4,7 @@ import { IComicRepository } from '../../domain/repositories/IComicRepository';
 import { Character } from '../../domain/models/Character';
 import { Comic } from '../../domain/models/Comic';
 import crypto from 'crypto';
-import { MarvelCharacter } from './type';
+import { MarvelCharacter, MarvelComic } from './type';
 
 const PUBLIC_KEY = process.env.MARVEL_PUBLIC_KEY!;
 const PRIVATE_KEY = process.env.MARVEL_PRIVATE_KEY!;
@@ -46,12 +46,15 @@ export class MarvelApiService implements ICharacterRepository, IComicRepository 
         hash,
       }
     });
-    return response.data.data.results.map((comic: any) => (new Comic(
-      comic.id,
+    return response.data.data.results.map((comic: MarvelComic) => (new Comic(
+      comic.id.toString(),
       comic.title,
       comic.description,
       `${comic.thumbnail.path}.${comic.thumbnail.extension}`,
-      new Date(comic.dates.find((date: any) => date.type === 'onsaleDate')?.date || '').getFullYear())));
+      new Date(comic.dates.find((date: {
+        type: string;
+        date: string;
+      }) => date.type === 'onsaleDate')?.date || '').getFullYear())));
   }
 
   async getComicsByCharacter(characterId: string, limit: number): Promise<Comic[]> {
@@ -64,11 +67,14 @@ export class MarvelApiService implements ICharacterRepository, IComicRepository 
         hash,
       }
     });
-    return response.data.data.results.map((comic: any) => (new Comic(
-      comic.id,
+    return response.data.data.results.map((comic: MarvelComic) => (new Comic(
+      comic.id.toString(),
       comic.title,
       comic.description,
       `${comic.thumbnail.path}.${comic.thumbnail.extension}`,
-      new Date(comic.dates.find((date: any) => date.type === 'onsaleDate')?.date || '').getFullYear())));
+      new Date(comic.dates.find((date: {
+        type: string;
+        date: string;
+      }) => date.type === 'onsaleDate')?.date || '').getFullYear())));
   }
 }
