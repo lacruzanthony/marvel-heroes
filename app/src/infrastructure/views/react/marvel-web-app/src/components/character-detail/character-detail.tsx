@@ -2,6 +2,8 @@ import './styles.css';
 import React from 'react';
 import { useCharacterContext } from '../contexts/characters-context';
 import { PolygonCorner } from '../polygon-corner/polygon-corner';
+import emptyHeart from '../../assets/heart-default.svg';
+import selectedHeart from '../../assets/heart-selected.svg';
 import { MarvelCharacter } from '../../services/types';
 
 const CharacterDetail: React.FC = () => {
@@ -22,8 +24,13 @@ const CharacterDetail: React.FC = () => {
           />
           <div className="ml-lg-4 ms-5">
             <h1 className="text-light d-inline">{name}</h1>
-            <button className="btn btn-outline-danger float-end">
-              <i className="bi bi-heart"></i>
+            <button className="btn btn-outline position-relative">
+              <img
+                src={emptyHeart}
+                alt="favorites"
+                className={`h-8 sm:h-12 heart-icon position-absolute top-0 m-auto`}
+                // onClick={handleClick}
+              />
             </button>
             <p className="text-light w-75">{description}</p>
           </div>
