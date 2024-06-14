@@ -3,6 +3,7 @@ import { getCharacterComics } from '../../services/characters';
 import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import { Comic } from '../../services/types';
 import './styles.css';
+import { useDraggableSection } from '../hooks/use-draggable-section';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function loader({
@@ -16,36 +17,11 @@ export async function loader({
 }
 
 const CharacterComicList: React.FC = () => {
+  const characterComics = useLoaderData() as Comic[];
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const onMouseDown = (e: React.MouseEvent) => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
+  const { onMouseDown } = useDraggableSection(scrollRef);
 
-    scrollContainer.style.cursor = 'grabbing';
-    scrollContainer.style.userSelect = 'none';
-
-    const startX = e.pageX - scrollContainer.offsetLeft;
-    const scrollLeft = scrollContainer.scrollLeft;
-
-    const onMouseMove = (e: MouseEvent) => {
-      const x = e.pageX - scrollContainer.offsetLeft;
-      const walk = (x - startX) * 1;
-      scrollContainer.scrollLeft = scrollLeft - walk;
-    };
-
-    const onMouseUp = () => {
-      scrollContainer.style.cursor = 'grab';
-      scrollContainer.style.removeProperty('user-select');
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('mouseup', onMouseUp);
-    };
-
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseup', onMouseUp);
-  };
-
-  const characterComics = useLoaderData() as Comic[];
   return (
     <div className="container mb-5">
       <h2 className="ms-4">Comics</h2>
