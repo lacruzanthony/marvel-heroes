@@ -39,7 +39,12 @@ const router = createBrowserRouter([
       },
       {
         path: '/favorites',
-        element: <Favorites />,
+        element: (
+          <>
+            <SearchBar placeholder="Search a character..." />
+            <Favorites />,
+          </>
+        ),
       },
       {
         path: '/character/:id',
