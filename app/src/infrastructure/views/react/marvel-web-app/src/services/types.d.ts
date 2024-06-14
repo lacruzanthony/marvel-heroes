@@ -12,4 +12,5 @@ export interface Comic {
     title: string;
     description: string;
     thumbnail: string;
+    year: number;
 }

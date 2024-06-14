@@ -16,5 +16,6 @@ export interface MarvelCharacter {
             path: string;
             extension: string;
         }
+        years: number;
     }
 }

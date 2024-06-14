@@ -1,26 +1,47 @@
 .comic-list-container {
-    display: flex;
-    overflow-x: auto;
-    padding-bottom: 1rem; 
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: red transparent; /* Color de la barra de desplazamiento */
+}
+
+.comic-list-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.comic-list-container::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 10px;
+}
+
+.comic-list-container::-webkit-scrollbar-thumb:hover {
+  background: darkred;
+}
+
+.comic-list-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.comic-list-container::-webkit-scrollbar-button {
+  display: none;
+}
+
+.responsive-margin {
+  margin-left: 14rem;
+  margin-right: 14rem;
+}
+
+@media (max-width: 768px) {
+  .responsive-margin {
+    margin-left: 63px;
+    margin-right: 63px;
   }
-  
-  .comic-list-container::-webkit-scrollbar {
-    height: 6px;
+}
+
+@media (max-width: 576px) {
+  .responsive-margin {
+    margin-left: 31px;
+    margin-right: 31px;
   }
-  
-  .comic-list-container::-webkit-scrollbar-thumb {
-    background: red; 
-    border-radius: 10px;
-  }
-  
-  .comic-list-container::-webkit-scrollbar-thumb:hover {
-    background: darkred;
-  }
-  
-  .comic-list-container::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  
-  .comic-list-container::-webkit-scrollbar-button {
-    display: none;
-  }
+}

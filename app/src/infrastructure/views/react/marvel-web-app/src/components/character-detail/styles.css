@@ -1,3 +1,18 @@
-.container-detail{
-    margin-left: 17rem;
+.responsive-margin {
+  margin-left: 10rem;
+  margin-right: 10rem;
+}
+
+@media (max-width: 768px) {
+  .responsive-margin {
+    margin-left: 63px;
+    margin-right: 63px;
+  }
+}
+
+@media (max-width: 576px) {
+  .responsive-margin {
+    margin-left: 31px;
+    margin-right: 31px;
+  }
 }
