@@ -4,7 +4,6 @@ import { useLoaderData } from 'react-router-dom';
 import { MarvelCharacter } from '../../services/types';
 import { useCharacterContext } from '../contexts/characters-context';
 import { useEffect } from 'react';
-import { useFavoriteCharacterContext } from '../contexts/favorite-character';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function loader() {
