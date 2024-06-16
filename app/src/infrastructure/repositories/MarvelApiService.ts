@@ -10,6 +10,11 @@ const PUBLIC_KEY = process.env.MARVEL_PUBLIC_KEY!;
 const PRIVATE_KEY = process.env.MARVEL_PRIVATE_KEY!;
 const BASE_URL = 'https://gateway.marvel.com:443/v1/public';
 
+/**
+ * Generates a hash using the current timestamp, private key, and public key.
+ *
+ * @return {Object} An object containing the timestamp and the generated hash.
+ */
 const generateHash = (): { ts: string; hash: string } => {
   const ts = new Date().getTime().toString();
   const hash = crypto.createHash('md5').update(ts + PRIVATE_KEY + PUBLIC_KEY).digest('hex');
@@ -17,6 +22,13 @@ const generateHash = (): { ts: string; hash: string } => {
 };
 
 export class MarvelApiService implements ICharacterRepository, IComicRepository {
+  /**
+   * Retrieves a list of characters from the Marvel API based on the provided query and limit.
+   *
+   * @param {string} q - The query string to search for characters by name. Defaults to an empty string.
+   * @param {number} limit - The maximum number of characters to retrieve. Defaults to 50.
+   * @return {Promise<Character[]>} A promise that resolves to an array of Character objects representing the retrieved characters.
+   */
   async getCharacters(q: string = '', limit: number = 50): Promise<Character[]> {
     const { ts, hash } = generateHash();
     const params = q ? {
@@ -36,6 +48,12 @@ export class MarvelApiService implements ICharacterRepository, IComicRepository 
       new Character(char.id, char.name, char.description, `${char.thumbnail.path}.${char.thumbnail.extension}`, char.comics));
   }
 
+  /**
+   * Retrieves a list of comics from the Marvel API based on the provided limit.
+   *
+   * @param {number} limit - The maximum number of comics to retrieve.
+   * @return {Promise<Comic[]>} A promise that resolves to an array of Comic objects representing the retrieved comics.
+   */
   async getComics(limit: number): Promise<Comic[]> {
     const { ts, hash } = generateHash();
     const response = await axios.get(`${BASE_URL}/comics`, {
@@ -57,6 +75,13 @@ export class MarvelApiService implements ICharacterRepository, IComicRepository 
       }) => date.type === 'onsaleDate')?.date || '').getFullYear())));
   }
 
+  /**
+   * Retrieves a list of comics associated with a specific Marvel character.
+   *
+   * @param {string} characterId - The ID of the Marvel character.
+   * @param {number} limit - The maximum number of comics to retrieve.
+   * @return {Promise<Comic[]>} A promise that resolves to an array of Comic objects representing the retrieved comics.
+   */
   async getComicsByCharacter(characterId: string, limit: number): Promise<Comic[]> {
     const { ts, hash } = generateHash();
     const response = await axios.get(`${BASE_URL}/characters/${characterId}/comics?orderBy=onsaleDate`, {

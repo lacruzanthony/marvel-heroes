@@ -1,7 +1,14 @@
 export const useDraggableSection = (
   scrollRef: React.RefObject<HTMLDivElement>,
 ) => {
-  const onMouseDown = (e: React.MouseEvent) => {
+  const onMouseDown = (
+    e:
+      | React.MouseEvent
+      | {
+          pageX: 0;
+          preventDefault: () => void;
+        },
+  ) => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
