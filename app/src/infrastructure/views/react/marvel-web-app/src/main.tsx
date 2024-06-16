@@ -13,7 +13,7 @@ import CharactersGrid, {
   loader as CharactersLoader,
 } from './components/characters-grid/characters-grid';
 import { CharacterProvider } from './components/contexts/characters-context';
-import CharacterDetail from './components/character-detail/character-detail';
+import { CharacterDetail } from './components/character-detail';
 import CharacterComicList, {
   loader as CharacterDetailLoader,
 } from './components/character-comic-list/character-comic-list';

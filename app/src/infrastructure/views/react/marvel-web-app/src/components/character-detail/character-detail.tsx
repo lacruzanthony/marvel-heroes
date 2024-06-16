@@ -7,7 +7,7 @@ import selectedHeart from '../../assets/heart-selected.svg';
 import { MarvelCharacter } from '../../services/types';
 import { useFavoriteCharacterContext } from '../contexts/favorite-character';
 
-const CharacterDetail: React.FC = () => {
+export const CharacterDetail: React.FC = () => {
   const { characterDetail } = useCharacterContext();
   const { toggleFavorite, isCharacterFavorite } =
     useFavoriteCharacterContext();
@@ -54,5 +54,3 @@ const CharacterDetail: React.FC = () => {
     </PolygonCorner>
   );
 };
-
-export default CharacterDetail;
