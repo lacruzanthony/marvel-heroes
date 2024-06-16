@@ -44,7 +44,7 @@ export const Card = ({
               }}
               src={thumbnail}
               className="card-img-top rounded-0"
-              alt={`${name}-image`}
+              alt={`${name}`}
             />
           </div>
         </Link>

@@ -30,14 +30,23 @@ export const SearchBar: React.FC<SearchBarProps> = ({
     setSearchValue(event.target.value);
   };
 
+  /**
+   * Updates the browser's URL to include the current search value.
+   *
+   * @returns {void}
+   */
   useEffect(() => {
     const pathName =
       debouncedSearch === '' ? '/' : `/?q=${debouncedSearch}`;
     window.history.replaceState(null, '', pathName);
   }, [debouncedSearch]);
 
-  // fetch the characters by the search value using searchCharacters service.
   useEffect(() => {
+    /**
+     * Fetches characters based on the debounced search value and updates the character state.
+     *
+     * @returns {void} No return value
+     */
     const fetchCharacters = async () => {
       const characters = (await getCharacters(
         debouncedSearch,

@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node src/server.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node dist/server.js",
+    "test": "jest",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "cd ./src/infrastructure/views/react/marvel-web-app && npm run build:prod",
+    "build:backend": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +25,11 @@
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
-    "@types/node": "^20.14.2"
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.2",
+    "@types/supertest": "^6.0.2",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.1.4"
   }
 }
