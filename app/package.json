@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node src/server.ts",
-    "test": "jest"
+    "start": "node dist/server.js",
+    "test": "jest",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "cd ./src/infrastructure/views/react/marvel-web-app && npm run build:prod",
+    "build:backend": "tsc"
   },
   "keywords": [],
   "author": "",
