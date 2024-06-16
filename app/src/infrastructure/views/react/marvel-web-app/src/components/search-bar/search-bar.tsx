@@ -1,5 +1,5 @@
 import './styles.css';
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent, ReactElement, useEffect } from 'react';
 import searchIcon from '../../assets/glass.svg';
 import { getCharacters } from '../../services/characters';
 import { useCharacterContext } from '../contexts/characters-context';
@@ -12,9 +12,16 @@ interface SearchBarProps {
 
 const DEBOUNCE_TIME = 500;
 
+/**
+ * SearchBar is a React functional component that renders a search bar input field.
+ *
+ * @param {SearchBarProps} props - The component props.
+ * @param {string} props.placeholder - The placeholder text for the search input field.
+ * @return {ReactElement} The rendered SearchBar component.
+ */
 export const SearchBar: React.FC<SearchBarProps> = ({
   placeholder,
-}) => {
+}: SearchBarProps): ReactElement => {
   const [searchValue, setSearchValue] = React.useState(() => {
     const query = new URLSearchParams(window.location.search).get(
       'q',
@@ -26,6 +33,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 
   const debouncedSearch = useDebounce(searchValue, DEBOUNCE_TIME);
 
+  /**
+   * Updates the search value state when the input value changes.
+   *
+   * @param {ChangeEvent<HTMLInputElement>} event - The event triggered by the input change.
+   * @return {void} This function does not return anything.
+   */
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };

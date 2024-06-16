@@ -5,7 +5,14 @@ import { MarvelApiService } from '../repositories/MarvelApiService';
 const characterRepository = new MarvelApiService();
 const getMarvelCharacters = new GetMarvelCharacters(characterRepository);
 
-export const getMarvelCharactersController = async (req: Request, res: Response) => {
+/**
+ * Retrieves Marvel characters based on a query string parameter.
+ *
+ * @param {Request} req - The request object containing the query string parameter.
+ * @param {Response} res - The response object used to send the characters.
+ * @return {Promise<void>} A promise that resolves when the characters are retrieved and sent.
+ */
+export const getMarvelCharactersController = async (req: Request, res: Response): Promise<void> => {
   try {
     const { q = '' } = req.query;
     const characters = await getMarvelCharacters.execute(q.toString(), 50);

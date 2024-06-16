@@ -15,9 +15,6 @@ export const Favorites = () => {
     if (!showFavoritesGrid) {
       navigate('/');
     }
-    () => {
-      toggleShowFavoritesGrid();
-    };
   }, [navigate, toggleShowFavoritesGrid, showFavoritesGrid]);
 
   return (
