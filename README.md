@@ -77,7 +77,7 @@ The backend is built using Node.js and Express. It provides a RESTful API for re
 
 ### Running the backend
 
-1. Start the backend: `cd ./app && npm run dev`
+1. Start the backend: `cd ./app && pnpm run dev`
 
 ## Frontend
 
@@ -87,11 +87,11 @@ The frontend is built using React with TypeScript and Vite. It consumes data fro
 
 1. Navigate to the frontend directory: `cd ./src/infrastructure/views/react/marvel-web-app`
    > **Note:** You don't need to run this command if you have already run `pnpm install` in the root folder.
-2. Install dependencies: `npm install`
+2. Install dependencies: `pnpm install`
 
 ### Running the frontend
 
-1. Start the frontend: `npm run dev`
+1. Start the frontend: `pnpm run dev`
 2. Open your browser and navigate to `http://localhost:3000`
 
 ### Building the application
