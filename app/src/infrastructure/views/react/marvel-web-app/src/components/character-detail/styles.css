@@ -5,8 +5,8 @@
 
 @media (max-width: 768px) {
   .responsive-margin {
-    margin-left: 63px;
-    margin-right: 63px;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
