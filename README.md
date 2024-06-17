@@ -92,7 +92,7 @@ The frontend is built using React with TypeScript and Vite. It consumes data fro
 ### Running the frontend
 
 1. Start the frontend: `pnpm run dev`
-2. Open your browser and navigate to `http://localhost:3000`
+2. Open your browser and navigate to `http://localhost:5173/`
 
 ### Building the application
 
