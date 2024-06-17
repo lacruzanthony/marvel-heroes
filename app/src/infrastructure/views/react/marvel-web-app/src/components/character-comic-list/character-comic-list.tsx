@@ -41,7 +41,8 @@ const CharacterComicList: React.FC = () => {
               style={{
                 width: '70%',
                 height: '30%',
-                objectFit: 'cover',
+                minHeight: '240px',
+                objectFit: 'fill',
               }}
               draggable="false"
               src={comic.thumbnail}
